@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     "Gartenreinigung",
     "Hordorf",
     "Lehre",
+    "Grünschnittentsorgung",
     "Braunschweig",
     "Niedersachsen",
   ],
