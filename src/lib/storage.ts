@@ -103,6 +103,7 @@ async function writeToBlob(relPath: string, content: string): Promise<void> {
   await put(`content/${relPath}`, content, {
     access: "public",
     addRandomSuffix: false,
+    allowOverwrite: true,
     contentType: "application/json",
     token: BLOB_TOKEN,
   });
