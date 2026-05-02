@@ -8,6 +8,7 @@ import { AdminCard, AdminField, inputCls } from "./AdminShell";
 export function KontaktForm({ initial }: { initial: KontaktInfo }) {
   const [data, setData] = useState(initial);
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const set = (key: keyof KontaktInfo) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setData((d) => ({ ...d, [key]: e.target.value }));
@@ -16,8 +17,13 @@ export function KontaktForm({ initial }: { initial: KontaktInfo }) {
     e.preventDefault();
     setStatus("saving");
     const res = await saveKontaktInfo(data);
-    setStatus(res.ok ? "saved" : "error");
-    if (res.ok) setTimeout(() => setStatus("idle"), 2500);
+    if (res.ok) {
+      setStatus("saved");
+      setTimeout(() => setStatus("idle"), 2500);
+    } else {
+      setStatus("error");
+      setErrorMsg(res.error);
+    }
   }
 
   return (
@@ -67,7 +73,7 @@ export function KontaktForm({ initial }: { initial: KontaktInfo }) {
           {status === "saving" ? "Speichert…" : "Speichern"}
         </button>
         {status === "saved" && <p className="text-sm text-emerald-600 font-medium">✓ Gespeichert</p>}
-        {status === "error" && <p className="text-sm text-red-600">Fehler beim Speichern.</p>}
+        {status === "error" && <p className="text-sm text-red-600">Fehler: {errorMsg}</p>}
       </div>
     </form>
   );

@@ -30,7 +30,7 @@ export async function saveImpressum(
     return { ok: true };
   } catch (err) {
     console.error("saveImpressum error:", err);
-    return { ok: false, error: "Datei konnte nicht gespeichert werden." };
+    return { ok: false, error: err instanceof Error ? err.message : String(err) };
   }
 }
 
@@ -56,7 +56,7 @@ export async function saveKontaktInfo(
     return { ok: true };
   } catch (err) {
     console.error("saveKontaktInfo error:", err);
-    return { ok: false, error: "Datei konnte nicht gespeichert werden." };
+    return { ok: false, error: err instanceof Error ? err.message : String(err) };
   }
 }
 
@@ -98,6 +98,6 @@ export async function saveService(
     return { ok: true };
   } catch (err) {
     console.error("saveService error:", err);
-    return { ok: false, error: "Datei konnte nicht gespeichert werden." };
+    return { ok: false, error: err instanceof Error ? err.message : String(err) };
   }
 }
