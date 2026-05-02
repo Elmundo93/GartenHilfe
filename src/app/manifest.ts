@@ -2,20 +2,20 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Sanitätshaus Mielke - Orthopädietechnik & Rehatechnik',
-    short_name: 'Sanitätshaus Mielke',
-    description: 'Ihr Spezialist für Orthopädietechnik, Rehatechnik und Orthopädieschuhtechnik seit 1989. 5 Standorte in Hessen.',
+    name: 'Gartenhilfe – Ihr Gartenservice im Raum Braunschweig',
+    short_name: 'Gartenhilfe',
+    description:
+      'Gartenhilfe: regionaler Gartenservice in Hordorf, Lehre und dem Raum Braunschweig. Rasenmähen, Heckenschnitt, Unkrautentfernung, Pflanzarbeiten und Gartenreinigung.',
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',
-    theme_color: '#059669', // emerald-600
+    theme_color: '#059669',
     icons: [
       {
-        src: '/Mielke_Logo_b.webp',
+        src: '/GartenHilfeLogo.png',
         sizes: '192x192',
-        type: 'image/webp',
+        type: 'image/png',
       },
     ],
   }
 }
-
