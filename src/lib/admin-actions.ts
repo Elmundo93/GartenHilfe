@@ -1,11 +1,9 @@
 "use server";
 
-import fs from "node:fs/promises";
-import path from "node:path";
 import { z } from "zod";
+import { revalidatePath } from "next/cache";
+import { writeContentFile } from "@/lib/storage";
 import type { ImpressumContent, KontaktInfo, Service } from "@/lib/content";
-
-const CONTENT_DIR = path.join(process.cwd(), "src", "content");
 
 // ── Impressum ──────────────────────────────────────────────────────────────────
 
@@ -26,8 +24,9 @@ export async function saveImpressum(
   const parsed = ImpressumSchema.safeParse(data);
   if (!parsed.success) return { ok: false, error: parsed.error.message };
   try {
-    const p = path.join(CONTENT_DIR, "impressum", "content.json");
-    await fs.writeFile(p, JSON.stringify(parsed.data, null, 2), "utf8");
+    await writeContentFile("impressum/content.json", JSON.stringify(parsed.data, null, 2));
+    revalidatePath("/impressum");
+    revalidatePath("/admin/impressum");
     return { ok: true };
   } catch (err) {
     console.error("saveImpressum error:", err);
@@ -50,8 +49,10 @@ export async function saveKontaktInfo(
   const parsed = KontaktSchema.safeParse(data);
   if (!parsed.success) return { ok: false, error: parsed.error.message };
   try {
-    const p = path.join(CONTENT_DIR, "kontakt", "info.json");
-    await fs.writeFile(p, JSON.stringify(parsed.data, null, 2), "utf8");
+    await writeContentFile("kontakt/info.json", JSON.stringify(parsed.data, null, 2));
+    revalidatePath("/kontakt");
+    revalidatePath("/admin/kontakt");
+    revalidatePath("/");
     return { ok: true };
   } catch (err) {
     console.error("saveKontaktInfo error:", err);
@@ -90,8 +91,10 @@ export async function saveService(
   if (!parsed.success) return { ok: false, error: parsed.error.message };
   try {
     const payload = { slug, ...parsed.data };
-    const p = path.join(CONTENT_DIR, "services", `${slug}.json`);
-    await fs.writeFile(p, JSON.stringify(payload, null, 2), "utf8");
+    await writeContentFile(`services/${slug}.json`, JSON.stringify(payload, null, 2));
+    revalidatePath(`/leistungen/${slug}`);
+    revalidatePath("/leistungen");
+    revalidatePath(`/admin/leistungen/${slug}`);
     return { ok: true };
   } catch (err) {
     console.error("saveService error:", err);

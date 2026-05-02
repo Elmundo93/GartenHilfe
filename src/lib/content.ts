@@ -1,5 +1,4 @@
-import fs from "node:fs/promises";
-import path from "node:path";
+import { readContentFile, readContentDir } from "@/lib/storage";
 
 export type ImpressumContent = {
   firmenname: string;
@@ -53,35 +52,23 @@ export type AboutUsContent = {
   services: string[];
 };
 
-const CONTENT_DIR = path.join(process.cwd(), "src", "content");
-
 export async function getAllServices(): Promise<Service[]> {
-  try {
-    const dir = path.join(CONTENT_DIR, "services");
-    const files = await fs.readdir(dir);
-    const items = await Promise.all(
-      files
-        .filter(f => f.endsWith(".json"))
-        .map(async (f) => {
-          try {
-            const raw = await fs.readFile(path.join(dir, f), "utf8");
-            return JSON.parse(raw) as Service;
-          } catch (err) {
-            console.error(`Error reading service file ${f}:`, err);
-            return null;
-          }
-        })
-    );
-    return items.filter((item): item is Service => item !== null).sort((a, b) => a.title.localeCompare(b.title, "de"));
-  } catch (err) {
-    console.error("Error loading services:", err);
-    return [];
-  }
+  const raws = await readContentDir("services");
+  return raws
+    .map((raw) => {
+      try {
+        return JSON.parse(raw) as Service;
+      } catch {
+        return null;
+      }
+    })
+    .filter((s): s is Service => s !== null)
+    .sort((a, b) => a.title.localeCompare(b.title, "de"));
 }
 
 export async function getService(slug: Service["slug"]): Promise<Service | null> {
   const all = await getAllServices();
-  return all.find(s => s.slug === slug) ?? null;
+  return all.find((s) => s.slug === slug) ?? null;
 }
 
 export async function getImpressumContent(): Promise<ImpressumContent> {
@@ -95,13 +82,7 @@ export async function getImpressumContent(): Promise<ImpressumContent> {
     email: "",
     ustIdNr: "",
   };
-  try {
-    const p = path.join(CONTENT_DIR, "impressum", "content.json");
-    const raw = await fs.readFile(p, "utf8");
-    return { ...defaults, ...JSON.parse(raw) };
-  } catch {
-    return defaults;
-  }
+  return readContentFile("impressum/content.json", defaults);
 }
 
 export async function getKontaktInfo(): Promise<KontaktInfo> {
@@ -111,24 +92,14 @@ export async function getKontaktInfo(): Promise<KontaktInfo> {
     website: "",
     erreichbarkeit: "Mo–Fr 8–18 Uhr",
   };
-  try {
-    const p = path.join(CONTENT_DIR, "kontakt", "info.json");
-    const raw = await fs.readFile(p, "utf8");
-    return { ...defaults, ...JSON.parse(raw) };
-  } catch {
-    return defaults;
-  }
+  return readContentFile("kontakt/info.json", defaults);
 }
 
 export async function getAboutUsContent(): Promise<AboutUsContent | null> {
+  const raws = await readContentDir("about-us");
+  if (raws.length === 0) return null;
   try {
-    const dir = path.join(CONTENT_DIR, "about-us");
-    const files = await fs.readdir(dir);
-    const items = await Promise.all(files.filter(f => f.endsWith(".json")).map(async (f) => {
-      const raw = await fs.readFile(path.join(dir, f), "utf8");
-      return JSON.parse(raw) as AboutUsContent;
-    }));
-    return items[0];
+    return JSON.parse(raws[0]) as AboutUsContent;
   } catch {
     return null;
   }
