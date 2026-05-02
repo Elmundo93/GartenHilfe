@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default async function ContactPage() {
   const info = await getKontaktInfo();
   const PHONE = info.telefon || process.env.BUSINESS_PHONE || "+49 000 0000000";
-  const EMAIL = info.email || process.env.BUSINESS_EMAIL || "info@gartenhilfe-bs.de";
+  const EMAIL = info.email || process.env.BUSINESS_EMAIL || "Kevin@gartenhilfe.net";
   const ERREICHBARKEIT = info.erreichbarkeit || "Mo–Fr 8–18 Uhr";
   return (
     <>
