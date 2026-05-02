@@ -1,0 +1,67 @@
+{
+  "slug": "gartenreinigung",
+  "title": "Gartenreinigung & Saisonpflege",
+  "intro": "Frühjahrsputz, Herbstreinigung und laufende Gartenpflege – damit Ihr Garten das ganze Jahr über ordentlich aussieht.",
+  "benefits": [
+    "Laub entfernen und entsorgen",
+    "Frühjahrs- und Herbstpflege",
+    "Gartenabfälle abtransportieren",
+    "Regelmäßige Betreuungspakete verfügbar"
+  ],
+  "heroImage": "/mowing-the-grass-with-vehicle.jpg",
+  "content": "Zweimal im Jahr steht in vielen Gärten ein großer Aufräumtag an: im Frühjahr, wenn der Winter seine Spuren hinterlassen hat, und im Herbst, wenn Laub und abgestorbene Pflanzen entsorgt werden müssen. Das kostet Zeit und Kraft – wir nehmen Ihnen diese Arbeit ab.\n\nVon der Laubbeseitigung über die Reinigung von Wegen und Terrassen bis hin zum Abtransport von Grünabfällen: Wir hinterlassen Ihren Garten sauber und gepflegt. Auf Wunsch betreuen wir Ihren Garten auch laufend – mit einem individuellen Pflegepaket, das auf Ihre Bedürfnisse zugeschnitten ist.",
+  "categories": [
+    {
+      "title": "Saisonale Gartenreinigung",
+      "items": [
+        "Frühjahrsputz: Winterschäden beseitigen, Beete freischneiden",
+        "Herbstreinigung: Laub entfernen, Beete winterfest machen",
+        "Laubentsorgung von Rasen, Wegen und Terrassen",
+        "Gartenabfälle sammeln und abtransportieren",
+        "Kehrarbeiten auf Wegen, Einfahrten und Terrassen"
+      ]
+    },
+    {
+      "title": "Laufende Gartenpflege",
+      "items": [
+        "Regelmäßige Pflegerunden nach Vereinbarung",
+        "Kombinierter Service: Mähen + Reinigung + Hecke",
+        "Pflegepakete für die gesamte Gartensaison",
+        "Betreuung in Urlaubszeiten und bei Abwesenheit",
+        "Auf Wunsch individuelle Pflegelisten"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "title": "Bedarf beschreiben",
+      "text": "Sagen Sie uns, was ansteht – Frühjahrsputz, Herbstreinigung oder laufende Betreuung."
+    },
+    {
+      "title": "Pflegepaket zusammenstellen",
+      "text": "Wir erstellen ein auf Sie zugeschnittenes Angebot – einmalig oder als Jahrespaket."
+    },
+    {
+      "title": "Regelmäßig gepflegt",
+      "text": "Wir kommen zu den vereinbarten Terminen und kümmern uns um alles – verlässlich und pünktlich."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Wann ist der beste Zeitpunkt für den Frühjahrsputz?",
+      "a": "Idealerweise ab Mitte März, wenn keine Dauerfröste mehr zu erwarten sind. Wir orientieren uns am Wetter und empfehlen einen passenden Termin."
+    },
+    {
+      "q": "Können Sie das Laub auch kompostieren statt entsorgen?",
+      "a": "Wenn Sie einen Kompostplatz haben, häufen wir das Laub gerne dort auf. Andernfalls entsorgen wir es fachgerecht."
+    },
+    {
+      "q": "Gibt es Jahrespakete?",
+      "a": "Ja, wir bieten individuelle Betreuungspakete an, die Mähen, Heckenservice und saisonale Reinigungen kombinieren. Sprechen Sie uns einfach an."
+    },
+    {
+      "q": "Betreuen Sie auch Gärten in Abwesenheit des Eigentümers?",
+      "a": "Absolut. Viele Kunden beauftragen uns während des Urlaubs oder in längeren Abwesenheiten, damit der Garten gepflegt bleibt."
+    }
+  ]
+}

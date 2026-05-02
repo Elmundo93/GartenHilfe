@@ -1,32 +1,33 @@
 {
   "title": "Über uns",
   "hero": {
-    "headline": "Sanitätshaus MIELKE Ihr Spezialist für Orthopädietechnik – seit 1989!",
-    "intro": "Orthopädiemechanikermeister Helmut Mielke, eröffnete im April 1989 das erste Sanitätshaus Mielke in Witzenhausen in der Ermschwerderstraße, unsere heutige Hauptfiliale. Mittlerweile zählen wir vier weitere regionale Filialen zu unserem Unternehmen, die Sie in Bad Sooden-Allendorf, Großalmerode, Hessisch Lichtenau und Kaufungen finden."
+    "headline": "Gartenhilfe – Ihr verlässlicher Gartenservice im Raum Braunschweig",
+    "intro": "Wir sind ein regionaler Gartenservice aus Hordorf und betreuen Privatgärten und Grundstücke in Hordorf, Lehre und der gesamten Umgebung von Braunschweig. Zuverlässig, fair und mit dem richtigen Gerät für jeden Einsatz."
   },
   "mainContent": {
-    "section1": "Spezialisiert auf Orthopädietechnik, Rehatechnik und Medizintechnik, stehen wir Ihnen nun seit drei Jahrzehnten, mit fachgerechter und kompetenter Beratung in unseren Sanitätshäusern zur Seite. In den vergangenen Jahren haben wir unser Leistungsangebot stetig ausgebaut, um dem wachsenden medizinischen Fortschritt und den Ansprüchen unserer Kunden gerecht zu werden.",
-    "section2": "Seit 2008 haben wir zu dem die Orthopädieschuhtechnik in unser Leistungsportfolio aufgenommen und fertigen seit her für Sie in der unternehmenseigenen Schuhtechnikwerkstatt, orthopädische Schuhe, Einlagen und Schuhreparaturen aller Art in Handarbeit und nach Maß.",
-    "section3": "Service, Freundlichkeit und die Zufriedenheit unserer Kunden stehen bei uns an oberster Stelle. Damit wir diesen Anspruch erfüllen können, beschäftigen wir an fünf Standorten in der Region, 14 qualifizierte Mitarbeiter, die Ihnen mit jahrelanger Erfahrung, Professionalität und vor allem fachlichem Know-How beratend zur Seite stehen."
+    "section1": "Was als Nachbarschaftshilfe begann, ist heute ein verlässlicher Dienstleister für gepflegte Gärten in der Region. Wir kennen die Grundstücke und Gärten hier – und wir wissen, was es braucht, um sie das ganze Jahr über in Schuss zu halten.",
+    "section2": "Unser Leistungsspektrum umfasst alles, was mit mittelschweren Geräten machbar ist: Rasenmähen, Heckenschnitt, Unkrautentfernung, Pflanzarbeiten und saisonale Gartenreinigung. Wir arbeiten mit professionellem Gerät und bringen alles selbst mit – Sie müssen nichts bereitstellen.",
+    "section3": "Was uns ausmacht: Wir kommen pünktlich, arbeiten sauber und halten, was wir versprechen. Kurze Wege, direkte Absprachen und faire Preise ohne versteckte Kosten. Rufen Sie uns einfach an – wir freuen uns auf Ihre Anfrage."
   },
   "stats": [
     {
-      "number": "1989",
-      "label": "Gründungsjahr"
+      "number": "5",
+      "label": "Leistungen"
     },
     {
-      "number": "35+",
-      "label": "Jahre Erfahrung"
+      "number": "Regional",
+      "label": "Raum Braunschweig"
     },
     {
-      "number": "4",
-      "label": "Standorte"
+      "number": "Flexibel",
+      "label": "Termine nach Bedarf"
     }
   ],
   "services": [
-    "Orthopädietechnik",
-    "Rehatechnik", 
-    "Medizintechnik",
-    "Orthopädieschuhtechnik"
+    "Rasenmähservice",
+    "Hecken- & Strauchschnitt",
+    "Unkrautentfernung & Freischneider",
+    "Pflanz- & Erdarbeiten",
+    "Gartenreinigung & Saisonpflege"
   ]
 }

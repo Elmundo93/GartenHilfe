@@ -13,80 +13,67 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://sanitaetshaus-mielke.de'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://gartenhilfe-bs.de"),
   title: {
-    default: "Sanitätshaus Mielke – Orthopädietechnik & Rehatechnik in Hessen",
-    template: "%s | Sanitätshaus Mielke"
+    default: "Gartenhilfe – Ihr Gartenservice im Raum Braunschweig",
+    template: "%s | Gartenhilfe",
   },
-  description: "Sanitätshaus Mielke: Ihr Spezialist für Orthopädietechnik, Rehatechnik und Orthopädieschuhtechnik seit 1989. 5 Standorte in Hessen - Witzenhausen, Hessisch Lichtenau, Großalmerode, Kaufungen, Bad Sooden-Allendorf.",
-  icons: {
-    icon: '/favicon.ico',
-  },
+  description: "Gartenhilfe: Ihr regionaler Gartenservice in Hordorf, Lehre und dem Raum Braunschweig. Rasenmähen, Heckenschnitt, Unkrautentfernung, Pflanzarbeiten und Gartenreinigung.",
+  icons: { icon: "/favicon.ico" },
   keywords: [
-    "Sanitätshaus",
-    "Orthopädietechnik", 
-    "Rehatechnik",
-    "Orthopädieschuhtechnik",
-    "Hilfsmittel",
-    "Prothesen",
-    "Orthesen",
-    "Einlagen",
-    "Maßschuhe",
-    "Witzenhausen",
-    "Hessisch Lichtenau",
-    "Großalmerode",
-    "Kaufungen",
-    "Bad Sooden-Allendorf",
-    "Hessen",
-    "Nordhessen"
+    "Gartenservice",
+    "Gartenhelfer",
+    "Rasenmähen",
+    "Heckenschnitt",
+    "Unkrautentfernung",
+    "Gartenpflege",
+    "Gartenreinigung",
+    "Hordorf",
+    "Lehre",
+    "Braunschweig",
+    "Niedersachsen",
   ],
-  authors: [{ name: "Sanitätshaus Mielke" }],
-  creator: "Sanitätshaus Mielke",
-  publisher: "Sanitätshaus Mielke",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  robots: { 
-    index: true, 
+  authors: [{ name: "Gartenhilfe" }],
+  creator: "Gartenhilfe",
+  publisher: "Gartenhilfe",
+  formatDetection: { email: false, address: false, telephone: false },
+  robots: {
+    index: true,
     follow: true,
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   openGraph: {
     type: "website",
     locale: "de_DE",
     url: "/",
-    siteName: "Sanitätshaus Mielke",
-    title: "Sanitätshaus Mielke – Orthopädietechnik & Rehatechnik in Hessen",
-    description: "Ihr Spezialist für Orthopädietechnik, Rehatechnik und Orthopädieschuhtechnik seit 1989. 5 Standorte in Hessen.",
+    siteName: "Gartenhilfe",
+    title: "Gartenhilfe – Ihr Gartenservice im Raum Braunschweig",
+    description: "Rasenmähen, Heckenschnitt, Unkrautentfernung, Pflanzarbeiten und Gartenreinigung – zuverlässig und fair.",
     images: [
       {
-        url: "/Mielke_Logo_b.webp",
+        url: "/mowing-the-grass-with-vehicle.jpg",
         width: 1200,
         height: 630,
-        alt: "Sanitätshaus Mielke Logo",
+        alt: "Gartenhilfe – Rasenmähservice",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sanitätshaus Mielke – Orthopädietechnik & Rehatechnik in Hessen",
-    description: "Ihr Spezialist für Orthopädietechnik, Rehatechnik und Orthopädieschuhtechnik seit 1989.",
-    images: ["/Mielke_Logo_b.webp"],
+    title: "Gartenhilfe – Ihr Gartenservice im Raum Braunschweig",
+    description: "Rasenmähen, Heckenschnitt, Unkrautentfernung und mehr – regional und zuverlässig.",
+    images: ["/mowing-the-grass-with-vehicle.jpg"],
   },
   verification: {
     google: process.env.GOOGLE_VERIFICATION_ID,
   },
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
 };
 
 export default function RootLayout({
@@ -96,9 +83,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>

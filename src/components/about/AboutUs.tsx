@@ -82,10 +82,11 @@ export function AboutUs({ content }: AboutUsProps) {
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900 rounded-lg flex items-center justify-center group-hover:bg-emerald-200 dark:group-hover:bg-emerald-800 transition-colors duration-300">
                     <div className="text-emerald-600 dark:text-emerald-400 text-xl font-semibold">
-                      {index === 0 && "🏥"}
-                      {index === 1 && "♿"}
-                      {index === 2 && "🔬"}
-                      {index === 3 && "👟"}
+                      {index === 0 && "🌿"}
+                      {index === 1 && "✂️"}
+                      {index === 2 && "🪴"}
+                      {index === 3 && "🌱"}
+                      {index === 4 && "🚜"}
                     </div>
                   </div>
                 </div>
@@ -103,23 +104,23 @@ export function AboutUs({ content }: AboutUsProps) {
       {/* Call to Action */}
       <section className="text-center py-16 bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-950/20 dark:to-green-950/20 rounded-2xl border border-emerald-200 dark:border-emerald-800">
         <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-          Ihr vertrauensvoller Partner in der Orthopädietechnik
+          Ihr verlässlicher Gartenservice im Raum Braunschweig
         </h3>
         <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-          Besuchen Sie uns in einem unserer fünf Standorte für eine persönliche Beratung.
+          Rufen Sie uns an oder schreiben Sie uns – wir freuen uns auf Ihre Anfrage.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link 
-            href="/standorte" 
+          <Link
+            href="/kontakt"
             className="inline-flex items-center px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition-colors duration-300"
           >
-            Standorte anzeigen
+            Anfrage stellen
           </Link>
-          <Link 
-            href="/kontakt" 
+          <Link
+            href="/leistungen"
             className="inline-flex items-center px-8 py-3 border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white font-semibold rounded-lg transition-colors duration-300"
           >
-            Kontakt aufnehmen
+            Leistungen ansehen
           </Link>
         </div>
       </section>

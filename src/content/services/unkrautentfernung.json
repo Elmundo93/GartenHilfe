@@ -1,0 +1,63 @@
+{
+  "slug": "unkrautentfernung",
+  "title": "Unkrautentfernung & Freischneider",
+  "intro": "Wucherndes Unkraut und Wildwuchs zuverlässig entfernen – mit Freischneider, Motorsense und Handarbeit.",
+  "benefits": [
+    "Freiflächen, Böschungen und Randstreifen",
+    "Freischneider und Motorsense im Einsatz",
+    "Auch schwer zugängliche Bereiche",
+    "Regelmäßige Betreuung auf Wunsch"
+  ],
+  "heroImage": "/gardener-with-weedwacker-cutting-grass-garden.jpg",
+  "content": "Unkraut wächst schnell – auf Gehwegen, zwischen Pflastersteinen, an Böschungen und in verwilderten Ecken, die mit dem normalen Rasenmäher nicht erreichbar sind. Hier kommen wir zum Einsatz.\n\nMit Freischneider und Motorsense bearbeiten wir auch unwegsame Bereiche: steile Böschungen, Wegesränder, Zaunbereiche und Grundstückskanten. Auf Wunsch ergänzen wir die Arbeit durch Handarbeit an empfindlichen Stellen wie Beeten oder Terrassenplatten.",
+  "categories": [
+    {
+      "title": "Freischneiden & Mähen",
+      "items": [
+        "Böschungen und Hangflächen",
+        "Grabenränder und Entwässerungsstreifen",
+        "Randstreifen entlang von Zäunen und Mauern",
+        "Schwer erreichbare Ecken und Winkel",
+        "Verwilderte Grundstücksteile"
+      ]
+    },
+    {
+      "title": "Unkrautentfernung",
+      "items": [
+        "Unkraut zwischen Gehwegplatten und Pflaster",
+        "Beete ausjäten und sauber halten",
+        "Fugen von Terrassen und Einfahrten",
+        "Wildkräuter an Beeträndern",
+        "Nachbehandlung und Schutzmaßnahmen"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "title": "Anfrage und Beschreibung",
+      "text": "Sagen Sie uns, welche Flächen oder Bereiche betroffen sind – Fotos per Handy sind hilfreich."
+    },
+    {
+      "title": "Terminabsprache",
+      "text": "Wir legen gemeinsam einen Termin fest und kommen mit dem passenden Gerät."
+    },
+    {
+      "title": "Ausführung",
+      "text": "Wir arbeiten sorgfältig und gründlich – die Fläche verlassen wir aufgeräumt und gepflegt."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Können Sie auch Unkraut zwischen Pflastersteinen entfernen?",
+      "a": "Ja, das ist eine unserer Hauptaufgaben. Wir arbeiten mit Handwerkzeugen und Spezialgeräten, um Fugen und Zwischenräume gründlich zu säubern."
+    },
+    {
+      "q": "Arbeiten Sie auch auf Böschungen?",
+      "a": "Ja, Böschungen und Hangflächen gehören zu unserem Spezialgebiet. Mit Freischneider und Motorsense kommen wir auch in steilere Bereiche."
+    },
+    {
+      "q": "Kann ich einen regelmäßigen Pflegetermin buchen?",
+      "a": "Selbstverständlich. Viele unserer Kunden buchen eine monatliche oder saisonale Betreuung, damit der Wildwuchs gar nicht erst überhand nimmt."
+    }
+  ]
+}

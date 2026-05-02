@@ -1,0 +1,63 @@
+{
+  "slug": "pflanz-und-erdarbeiten",
+  "title": "Pflanz- & Erdarbeiten",
+  "intro": "Neubepflanzung, Beetgestaltung und einfache Erdarbeiten – wir bringen frisches Leben in Ihren Garten.",
+  "benefits": [
+    "Beetvorbereitung und Neubepflanzung",
+    "Erde, Mulch und Substrat aufbringen",
+    "Saisonale Bepflanzung von Beeten und Kübeln",
+    "Entsorgung von Grünabfällen und Erde"
+  ],
+  "heroImage": "/man-psushing-wheelbarrow-full-seedling.jpg",
+  "content": "Ein neu bepflanztes Beet oder frisch aufgebrachter Mulch verwandeln einen ungepflegten Garten in eine einladende Grünfläche. Wir helfen Ihnen dabei – von der Beetvorbereitung bis zur fertigen Bepflanzung.\n\nOb Sie neue Stauden einsetzen möchten, Beete mit Rindenmulch abdecken oder Erde umschichten lassen – unser Team übernimmt die körperlich anspruchsvollen Teile der Gartenarbeit. Wir arbeiten mit Schubkarre, Spaten und mittlerem Handgerät und sind für alle gängigen Pflanz- und Erdarbeiten im privaten Gartenbereich ausgerüstet.",
+  "categories": [
+    {
+      "title": "Pflanzarbeiten",
+      "items": [
+        "Einpflanzen von Stauden, Sträuchern und Bodendeckern",
+        "Saisonale Beet- und Kübelbepflanzung",
+        "Bodenvorbereitung und Düngeeinarbeitung",
+        "Pflanzerde, Kompost oder Mulch aufbringen",
+        "Umtopfen und Neubepflanzung bestehender Beete"
+      ]
+    },
+    {
+      "title": "Einfache Erdarbeiten",
+      "items": [
+        "Erdmaterial abtragen und verfüllen",
+        "Beete anlegen und abgrenzen",
+        "Rindenmulch- und Kiesflächen anlegen",
+        "Erde und Grünabfälle abtransportieren",
+        "Beetränder setzen und pflegen"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "title": "Vorstellung Ihrer Ideen",
+      "text": "Schildern Sie uns, was Sie sich vorstellen – wir beraten Sie gerne, welche Pflanzen und Maßnahmen sinnvoll sind."
+    },
+    {
+      "title": "Materialbeschaffung",
+      "text": "Auf Wunsch beschaffen wir Pflanzen, Erde, Mulch oder anderen Bedarf für Sie."
+    },
+    {
+      "title": "Ausführung",
+      "text": "Wir erledigen die Pflanz- und Erdarbeiten fachgerecht und sorgen für einen aufgeräumten Abschluss."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Welche Pflanzen empfehlen Sie für pflegeleichte Beete?",
+      "a": "Das hängt von Standort und Boden ab. Wir beraten Sie gerne – robust und pflegeleicht sind oft Stauden wie Lavendel, Taglilien oder Gräser."
+    },
+    {
+      "q": "Bringen Sie Erde und Pflanzen mit?",
+      "a": "Ja, auf Wunsch beschaffen wir das Material für Sie. Alternativ können Sie Pflanzen und Substrat selbst besorgen – wir kümmern uns dann um die Ausführung."
+    },
+    {
+      "q": "Können Sie auch große Mengen Erde umschichten?",
+      "a": "Für mittlere Mengen ja. Für größere Erdarbeiten mit Baggereinsatz empfehlen wir spezialisierte Gartenbauunternehmen."
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "slug": "hecken-und-strauchschnitt",
+  "title": "Hecken- & Strauchschnitt",
+  "intro": "Hecken und Sträucher in Form bringen – akkurat, gründlich und mit dem richtigen Gerät.",
+  "benefits": [
+    "Formschnitt und Rückschnitt",
+    "Professionelles Schnittgerät für alle Heckenarten",
+    "Schnittgut wird ordentlich entsorgt",
+    "Auch für große und stark verwachsene Hecken"
+  ],
+  "heroImage": "/male-hands-cutting-bushes-with-big-scissors.jpg",
+  "content": "Hecken und Ziersträucher geben dem Garten Struktur und Privatsphäre – vorausgesetzt, sie werden regelmäßig in Form gehalten. Ein zu langer Rückschnitt ist jedoch körperlich anstrengend und erfordert das richtige Werkzeug.\n\nWir übernehmen den Hecken- und Strauchschnitt für Sie: vom ordentlichen Formschnitt der Thujahecke bis zum kräftigen Rückschnitt verwachsener Sträucher. Das Schnittgut wird auf Wunsch direkt von uns abgefahren – damit Sie nach unserem Besuch nichts mehr tun müssen.",
+  "categories": [
+    {
+      "title": "Heckenpflege",
+      "items": [
+        "Formschnitt (gerade, rund, freie Form)",
+        "Seitenschnitt und Höhenschnitt",
+        "Rückschnitt stark gewachsener Hecken",
+        "Thujahecken, Buchsbaum, Liguster, Eibe u. v. m.",
+        "Sichtschutzhecken und Grundstücksbegrenzungen"
+      ]
+    },
+    {
+      "title": "Strauch- und Gehölzpflege",
+      "items": [
+        "Formschnitt von Ziersträuchern",
+        "Rückschnitt nach der Blüte",
+        "Auslichten verwachsener Gehölze",
+        "Entfernung alter und toter Äste",
+        "Schnittgut-Entsorgung inklusive auf Wunsch"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "title": "Anfrage stellen",
+      "text": "Beschreiben Sie kurz, was geschnitten werden soll – per Anruf oder Nachricht."
+    },
+    {
+      "title": "Besichtigung oder Absprache",
+      "text": "Bei größeren Projekten schauen wir uns das Objekt gerne vorab an und erstellen ein Angebot."
+    },
+    {
+      "title": "Ausführung und Entsorgung",
+      "text": "Wir kommen mit dem richtigen Gerät und hinterlassen alles aufgeräumt und gepflegt."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Wann ist der beste Zeitpunkt für den Heckenschnitt?",
+      "a": "Grundsätzlich zwei Mal im Jahr: einmal im Frühsommer (nach dem Hauptaustrieb) und einmal im Spätsommer oder Herbst. Bitte beachten: Zwischen dem 1. März und dem 30. September sind stärkere Schnitte gesetzlich eingeschränkt (Brutschutz)."
+    },
+    {
+      "q": "Können Sie auch große, hohe Hecken schneiden?",
+      "a": "Ja, wir sind für mittelgroße bis große Hecken ausgerüstet. Für sehr hohe Baumarbeiten empfehlen wir jedoch spezielle Baumpfleger."
+    },
+    {
+      "q": "Was passiert mit dem Schnittgut?",
+      "a": "Auf Wunsch laden wir das Schnittgut auf und entsorgen es fachgerecht. Alternativ häckseln wir es auf der Fläche."
+    }
+  ]
+}

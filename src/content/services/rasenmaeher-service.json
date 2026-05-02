@@ -1,0 +1,67 @@
+{
+  "slug": "rasenmaeher-service",
+  "title": "Rasenmähservice",
+  "intro": "Gepflegter Rasen ohne eigenen Aufwand – wir mähen professionell, zuverlässig und zu fairen Preisen.",
+  "benefits": [
+    "Regelmäßige oder einmalige Termine",
+    "Geeignet für kleine und große Grundstücke",
+    "Inklusive Kantenschnitt auf Wunsch",
+    "Schnittgut-Entsorgung möglich"
+  ],
+  "heroImage": "/clickerhappy-lawnmower-2786525.jpg",
+  "content": "Ein sauber gemähter Rasen ist das Aushängeschild jedes gepflegten Gartens. Ob Sie keine Zeit haben, körperlich eingeschränkt sind oder Ihren Garten einfach in professionellen Händen wissen möchten – wir kümmern uns darum.\n\nMit unserem Rasenmähservice übernehmen wir die regelmäßige Pflege Ihres Rasens – pünktlich, sorgfältig und mit dem richtigen Gerät für jede Grundstücksgröße. Vom kompakten Hausgarten bis zum weitläufigen Grünstreifen: Wir passen unsere Leistung flexibel an Ihre Bedürfnisse an.",
+  "categories": [
+    {
+      "title": "Leistungsumfang Rasenpflege",
+      "items": [
+        "Rasenmähen bis ca. 1.000 m²",
+        "Kantenschnitt entlang von Wegen und Beeten",
+        "Schnittgut-Entsorgung oder Mulchen",
+        "Regelmäßige Pflegeintervalle (wöchentlich, zweiwöchentlich)",
+        "Einmalige Einsätze nach Bedarf"
+      ]
+    },
+    {
+      "title": "Für wen geeignet?",
+      "items": [
+        "Privatgärten und Einfamilienhäuser",
+        "Ferienhäuser und Wochenendhäuser",
+        "Vorgärten und Einfahrtsbereiche",
+        "Grundstücke in Abwesenheit des Eigentümers",
+        "Ältere Menschen und Personen mit körperlichen Einschränkungen"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "title": "Anfrage stellen",
+      "text": "Rufen Sie uns an oder schreiben Sie uns – wir melden uns schnell zurück."
+    },
+    {
+      "title": "Termin vereinbaren",
+      "text": "Wir klären Fläche, Häufigkeit und Wunschtermin – unkompliziert und flexibel."
+    },
+    {
+      "title": "Wir erledigen das",
+      "text": "Unser Team kommt pünktlich, bringt alles mit und hinterlässt Ihren Garten gepflegt."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Wie oft mähen Sie den Rasen?",
+      "a": "Das richten wir nach Ihrem Wunsch ein – üblich sind wöchentliche oder zweiwöchentliche Abstände in der Wachstumsphase (ca. April–Oktober)."
+    },
+    {
+      "q": "Bringen Sie das Gerät selbst mit?",
+      "a": "Ja, wir bringen alle notwendigen Geräte mit. Sie müssen nichts bereitstellen."
+    },
+    {
+      "q": "Was passiert mit dem Schnittgut?",
+      "a": "Auf Wunsch entsorgen wir das Schnittgut oder mulchen es direkt auf der Fläche – je nach Ihrer Präferenz."
+    },
+    {
+      "q": "Arbeiten Sie auch in meiner Abwesenheit?",
+      "a": "Ja, sofern wir Zugang zum Garten haben. Viele unserer Kunden sind berufstätig und möchten bei unserer Anwesenheit nicht zu Hause sein müssen."
+    }
+  ]
+}

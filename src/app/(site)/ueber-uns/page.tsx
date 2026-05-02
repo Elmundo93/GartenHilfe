@@ -5,23 +5,18 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Über uns",
-  description: "Über Sanitätshaus Mielke - Ihr Spezialist für Orthopädietechnik seit 1989. 35+ Jahre Erfahrung, 5 Standorte in Hessen. Geschichte, Team und Kompetenzen.",
+  description: "Über Gartenhilfe – Ihr regionaler Gartenservice aus Hordorf im Raum Braunschweig. Zuverlässig, fair und mit dem richtigen Gerät für jeden Einsatz.",
   keywords: [
-    "Sanitätshaus Mielke Geschichte",
-    "Orthopädietechnik seit 1989",
-    "Sanitätshaus Mielke Team",
-    "Orthopädiemechanikermeister",
-    "35 Jahre Erfahrung",
-    "Hessen Orthopädietechnik",
-    "Witzenhausen Sanitätshaus"
+    "Gartenhilfe über uns",
+    "Gartenservice Hordorf",
+    "Gartenhelfer Braunschweig",
+    "Gartenservice regional",
   ],
   openGraph: {
-    title: "Über Sanitätshaus Mielke - 35+ Jahre Orthopädietechnik",
-    description: "Seit 1989 Ihr kompetenter Partner für Orthopädietechnik, Rehatechnik und Orthopädieschuhtechnik in Hessen.",
+    title: "Über Gartenhilfe – Gartenservice im Raum Braunschweig",
+    description: "Ihr verlässlicher Gartenservice aus Hordorf für Hordorf, Lehre und den Raum Braunschweig.",
   },
-  alternates: {
-    canonical: "/ueber-uns",
-  },
+  alternates: { canonical: "/ueber-uns" },
 };
 
 export default async function AboutPage() {
@@ -32,9 +27,7 @@ export default async function AboutPage() {
       <Section>
         <div className="text-center py-12">
           <h1 className="text-3xl font-semibold mb-4">Über uns</h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            Inhalte werden geladen...
-          </p>
+          <p className="text-gray-600 dark:text-gray-400">Inhalte werden geladen...</p>
         </div>
       </Section>
     );
@@ -46,4 +39,3 @@ export default async function AboutPage() {
     </Section>
   );
 }
-

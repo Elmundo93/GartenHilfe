@@ -25,9 +25,7 @@ export function ServiceCard({ service }: { service: Service }) {
               className="object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-            <div className="absolute top-4 right-4 w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center">
-              <div className="text-white text-xl">{icon}</div>
-            </div>
+          
           </div>
         )}
         

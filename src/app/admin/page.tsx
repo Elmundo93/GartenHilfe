@@ -2,23 +2,32 @@ import Link from "next/link";
 
 const sections = [
   {
-    href: "/admin/standorte",
-    title: "Standorte",
-    description: "Kontaktdaten, Öffnungszeiten und Inhalte der Filialen bearbeiten.",
+    href: "/admin/kontakt",
+    title: "Kontaktdaten & vCard",
+    description: "Telefon, E-Mail, Website und Erreichbarkeit anpassen.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
       </svg>
     ),
   },
   {
-    href: "/admin/karriere",
-    title: "Karriere",
-    description: "Stellenanzeigen ein- und ausschalten oder inhaltlich bearbeiten.",
+    href: "/admin/leistungen",
+    title: "Leistungen",
+    description: "Beschreibungen, Vorteile und FAQs aller 5 Gartenservices bearbeiten.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+      </svg>
+    ),
+  },
+  {
+    href: "/admin/impressum",
+    title: "Impressum",
+    description: "Firmenname, Inhaberdaten, Adresse und Kontakt für das Impressum.",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
       </svg>
     ),
   },
@@ -30,7 +39,7 @@ export default function AdminDashboard() {
       <div className="max-w-xl mx-auto">
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-gray-900">Admin</h1>
-          <p className="text-sm text-gray-500 mt-1">Sanitätshaus Mielke – Verwaltung</p>
+          <p className="text-sm text-gray-500 mt-1">Gartenhilfe – Verwaltung</p>
         </div>
 
         <div className="space-y-3">
