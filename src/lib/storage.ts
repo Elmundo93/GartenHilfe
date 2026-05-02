@@ -25,13 +25,13 @@ async function readFromBlob<T>(relPath: string, defaults: T): Promise<T> {
   try {
     const { blobs } = await list({ prefix: `content/${relPath}`, token: BLOB_TOKEN });
     const blob = blobs.find((b) => b.pathname === `content/${relPath}`);
-    if (!blob) return defaults;
+    if (!blob) return readFromFilesystem(relPath, defaults);
     const res = await fetch(blob.url, { cache: "no-store" });
-    if (!res.ok) return defaults;
+    if (!res.ok) return readFromFilesystem(relPath, defaults);
     const raw = await res.text();
     return { ...defaults, ...JSON.parse(raw) };
   } catch {
-    return defaults;
+    return readFromFilesystem(relPath, defaults);
   }
 }
 
@@ -58,16 +58,16 @@ async function readDirFromBlob(relDir: string): Promise<string[]> {
   const { list } = await import("@vercel/blob");
   try {
     const { blobs } = await list({ prefix: `content/${relDir}/`, token: BLOB_TOKEN });
+    const jsonBlobs = blobs.filter((b) => b.pathname.endsWith(".json"));
+    if (jsonBlobs.length === 0) return readDirFromFilesystem(relDir);
     return Promise.all(
-      blobs
-        .filter((b) => b.pathname.endsWith(".json"))
-        .map(async (b) => {
-          const res = await fetch(b.url, { cache: "no-store" });
-          return res.text();
-        })
+      jsonBlobs.map(async (b) => {
+        const res = await fetch(b.url, { cache: "no-store" });
+        return res.text();
+      })
     );
   } catch {
-    return [];
+    return readDirFromFilesystem(relDir);
   }
 }
 
