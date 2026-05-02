@@ -50,9 +50,7 @@ export async function saveKontaktInfo(
   if (!parsed.success) return { ok: false, error: parsed.error.message };
   try {
     await writeContentFile("kontakt/info.json", JSON.stringify(parsed.data, null, 2));
-    revalidatePath("/kontakt");
-    revalidatePath("/admin/kontakt");
-    revalidatePath("/");
+    revalidatePath("/", "layout");
     return { ok: true };
   } catch (err) {
     console.error("saveKontaktInfo error:", err);
