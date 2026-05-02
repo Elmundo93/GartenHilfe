@@ -1,7 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const USE_BLOB = !!process.env.BLOB_READ_WRITE_TOKEN;
+const BLOB_TOKEN = process.env.GartenHilfeBlob_READ_WRITE_TOKEN;
+const USE_BLOB = !!BLOB_TOKEN;
 
 const LOCAL_CONTENT_DIR = process.env.DATA_DIR
   ? path.resolve(process.env.DATA_DIR)
@@ -22,7 +23,7 @@ export async function readContentFile<T>(
 async function readFromBlob<T>(relPath: string, defaults: T): Promise<T> {
   const { list } = await import("@vercel/blob");
   try {
-    const { blobs } = await list({ prefix: `content/${relPath}` });
+    const { blobs } = await list({ prefix: `content/${relPath}`, token: BLOB_TOKEN });
     const blob = blobs.find((b) => b.pathname === `content/${relPath}`);
     if (!blob) return defaults;
     const res = await fetch(blob.url, { cache: "no-store" });
@@ -56,7 +57,7 @@ export async function readContentDir(relDir: string): Promise<string[]> {
 async function readDirFromBlob(relDir: string): Promise<string[]> {
   const { list } = await import("@vercel/blob");
   try {
-    const { blobs } = await list({ prefix: `content/${relDir}/` });
+    const { blobs } = await list({ prefix: `content/${relDir}/`, token: BLOB_TOKEN });
     return Promise.all(
       blobs
         .filter((b) => b.pathname.endsWith(".json"))
@@ -103,6 +104,7 @@ async function writeToBlob(relPath: string, content: string): Promise<void> {
     access: "public",
     addRandomSuffix: false,
     contentType: "application/json",
+    token: BLOB_TOKEN,
   });
 }
 
