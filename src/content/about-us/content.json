@@ -1,7 +1,7 @@
 {
   "title": "Über uns",
   "hero": {
-    "headline": "Gartenhilfe – Ihr verlässlicher Gartenservice im Raum Braunschweig",
+    "headline": "Ihr verlässlicher Gartenservice im Raum Braunschweig",
     "intro": "Wir sind ein regionaler Gartenservice aus Hordorf und betreuen Privatgärten und Grundstücke in Hordorf, Lehre und der gesamten Umgebung von Braunschweig. Zuverlässig, fair und mit dem richtigen Gerät für jeden Einsatz."
   },
   "mainContent": {
@@ -10,10 +10,6 @@
     "section3": "Was uns ausmacht: Wir kommen pünktlich, arbeiten sauber und halten, was wir versprechen. Kurze Wege, direkte Absprachen und faire Preise ohne versteckte Kosten. Rufen Sie uns einfach an – wir freuen uns auf Ihre Anfrage."
   },
   "stats": [
-    {
-      "number": "5",
-      "label": "Leistungen"
-    },
     {
       "number": "Regional",
       "label": "Raum Braunschweig"
