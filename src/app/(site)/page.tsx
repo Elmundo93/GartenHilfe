@@ -62,19 +62,14 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto py-6">
-            
-              <div className="text-center">
+            <div className="grid grid-cols-2 gap-6 sm:gap-10 max-w-2xl mx-auto py-6">
+              <div className="min-w-0 text-center">
                 <div className="text-3xl md:text-4xl font-bold text-emerald-400 mb-1">Regional</div>
-                <div className="text-sm text-gray-200">Raum BS</div>
+                <div className="text-sm text-gray-200 break-words text-pretty">Raum BS</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-emerald-400 mb-1"></div>
-                <div className="text-sm text-gray-200"></div>
-              </div>
-              <div className="text-center">
+              <div className="min-w-0 text-center">
                 <div className="text-3xl md:text-4xl font-bold text-emerald-400 mb-1">Flexibel</div>
-                <div className="text-sm text-gray-200">Schnelle Terminvereinbarung</div>
+                <div className="text-sm text-gray-200 break-words text-pretty">Schnelle Terminvereinbarung</div>
               </div>
             </div>
 

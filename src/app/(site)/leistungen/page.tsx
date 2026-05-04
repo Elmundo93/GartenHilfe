@@ -35,19 +35,16 @@ export default async function ServicesPage() {
           <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
             Wir übernehmen alle gängigen Gartenarbeiten mit professionellem Gerät – zuverlässig, fair und ohne dass Sie sich selbst die Hände schmutzig machen müssen.
           </p>
-          <div className="grid grid-cols-3 gap-8 max-w-xl mx-auto mb-12">
-          
-            <div className="text-center">
+          <div className="grid grid-cols-2 gap-6 sm:gap-10 max-w-xl mx-auto mb-12">
+            <div className="min-w-0 text-center">
               <div className="text-3xl md:text-4xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">Regional</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Raum Braunschweig</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400 break-words text-pretty">Raum Braunschweig</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-emerald-600 dark:text-emerald-400 mb-2"></div>
-              <div className="text-sm text-gray-600 dark:text-gray-400"></div>
-            </div>
-            <div className="text-center">
+            <div className="min-w-0 text-center">
               <div className="text-3xl md:text-4xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">Flexibel</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Schnelle Terminvereinbarung</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400 break-words text-pretty">
+                Schnelle Terminvereinbarung
+              </div>
             </div>
           </div>
         </div>
