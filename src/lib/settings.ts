@@ -1,0 +1,71 @@
+import { readPrivateContentFile, writePrivateContentFile } from "@/lib/storage";
+import { decryptSecret, isEncryptionAvailable, type EncryptedValue } from "@/lib/crypto";
+
+export interface SmtpSettings {
+  host?: string;
+  port?: number;
+  user?: string;
+  /** @deprecated plaintext — fallback only; use encryptedPass instead */
+  pass?: string;
+  encryptedPass?: EncryptedValue;
+  from?: string;
+  fallbackTo?: string;
+  secure?: boolean;
+}
+
+export interface ResolvedSmtpConfig {
+  host: string;
+  port: number;
+  user: string;
+  pass: string;
+  from: string;
+  fallbackTo: string;
+  secure: boolean;
+}
+
+export async function readSmtpSettings(): Promise<SmtpSettings> {
+  return readPrivateContentFile<SmtpSettings>("settings/smtp.json", {});
+}
+
+export async function writeSmtpSettings(settings: SmtpSettings): Promise<void> {
+  await writePrivateContentFile("settings/smtp.json", JSON.stringify(settings, null, 2));
+}
+
+function parseBool(value: string | undefined, fallback: boolean): boolean {
+  if (value === undefined) return fallback;
+  return ["1", "true", "yes", "on"].includes(value.toLowerCase());
+}
+
+function resolveStoredPass(stored: SmtpSettings): string {
+  if (process.env.SMTP_PASS) return process.env.SMTP_PASS;
+
+  if (stored.encryptedPass && isEncryptionAvailable()) {
+    try {
+      return decryptSecret(stored.encryptedPass);
+    } catch (err) {
+      console.error("[settings] SMTP-Passwort konnte nicht entschlüsselt werden:", err);
+    }
+  }
+
+  return stored.pass ?? "";
+}
+
+export function resolveSmtpConfig(stored: SmtpSettings): ResolvedSmtpConfig {
+  const port = Number(process.env.SMTP_PORT ?? stored.port ?? 587);
+  return {
+    host: process.env.SMTP_HOST ?? stored.host ?? "",
+    port,
+    user: process.env.SMTP_USER ?? stored.user ?? "",
+    pass: resolveStoredPass(stored),
+    from:
+      process.env.SMTP_FROM ??
+      process.env.MAIL_FROM ??
+      stored.from ??
+      "Gartenhilfe <kontakt@gartenhilfe-bs.de>",
+    fallbackTo:
+      process.env.MAIL_FALLBACK_TO ??
+      stored.fallbackTo ??
+      "info@gartenhilfe-bs.de",
+    secure: parseBool(process.env.SMTP_SECURE, stored.secure ?? port === 465),
+  };
+}

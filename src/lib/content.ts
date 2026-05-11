@@ -1,4 +1,4 @@
-import { readContentFile, readContentDir } from "@/lib/storage";
+import { readContentFile, readContentDir, readPrivateContentFile } from "@/lib/storage";
 
 export type ImpressumContent = {
   firmenname: string;
@@ -93,6 +93,50 @@ export async function getKontaktInfo(): Promise<KontaktInfo> {
     erreichbarkeit: "Mo–Fr 8–18 Uhr",
   };
   return readContentFile("kontakt/info.json", defaults);
+}
+
+// ── Datenschutz ────────────────────────────────────────────────────────────────
+
+type DsSection<T extends Record<string, unknown> = Record<never, never>> = { enabled: boolean } & T;
+
+export type DatenschutzContent = {
+  letzteAktualisierung: string;
+  datenschutzbeauftragter: {
+    aktiv: boolean;
+    name: string;
+    email: string;
+  };
+  sections: {
+    hosting: DsSection<{ anbieter: string; standort: string }>;
+    kontaktformular: DsSection;
+    smtp: DsSection<{ anbieter: string }>;
+    logs: DsSection;
+    cookies: DsSection<{ details: string }>;
+    karten: DsSection<{ anbieter: string }>;
+    betroffenenrechte: DsSection;
+    weitergabe: DsSection;
+    tracking: DsSection;
+  };
+};
+
+export const DATENSCHUTZ_DEFAULTS: DatenschutzContent = {
+  letzteAktualisierung: "",
+  datenschutzbeauftragter: { aktiv: false, name: "", email: "" },
+  sections: {
+    hosting: { enabled: true, anbieter: "", standort: "" },
+    kontaktformular: { enabled: true },
+    smtp: { enabled: true, anbieter: "" },
+    logs: { enabled: false },
+    cookies: { enabled: false, details: "" },
+    karten: { enabled: false, anbieter: "OpenStreetMap" },
+    betroffenenrechte: { enabled: true },
+    weitergabe: { enabled: true },
+    tracking: { enabled: true },
+  },
+};
+
+export async function getDatenschutzContent(): Promise<DatenschutzContent> {
+  return readPrivateContentFile("datenschutz/content.json", DATENSCHUTZ_DEFAULTS);
 }
 
 export async function getAboutUsContent(): Promise<AboutUsContent | null> {

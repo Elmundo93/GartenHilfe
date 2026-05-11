@@ -8,6 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/leistungen`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/ueber-uns`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.7 },
     { url: `${base}/kontakt`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/impressum`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
   ];
 
   const svcs = await getAllServices();

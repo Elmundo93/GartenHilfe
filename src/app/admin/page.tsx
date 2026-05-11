@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { LogoutButton } from "./LogoutButton";
+import { getImpressumContent, getDatenschutzContent } from "@/lib/content";
+import { readSmtpSettings } from "@/lib/settings";
 
 const sections = [
   {
@@ -22,6 +25,16 @@ const sections = [
     ),
   },
   {
+    href: "/admin/einstellungen",
+    title: "E-Mail-Einstellungen",
+    description: "SMTP-Zugangsdaten für den E-Mail-Versand konfigurieren.",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    ),
+  },
+  {
     href: "/admin/impressum",
     title: "Impressum",
     description: "Firmenname, Inhaberdaten, Adresse und Kontakt für das Impressum.",
@@ -31,15 +44,61 @@ const sections = [
       </svg>
     ),
   },
+  {
+    href: "/admin/datenschutz",
+    title: "Datenschutzerklärung",
+    description: "Hosting, SMTP-Anbieter und optionale Abschnitte der Datenschutzseite pflegen.",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+      </svg>
+    ),
+  },
 ];
 
-export default function AdminDashboard() {
+export default async function AdminDashboard() {
+  const [imp, ds, smtp] = await Promise.all([
+    getImpressumContent(),
+    getDatenschutzContent(),
+    readSmtpSettings(),
+  ]);
+
+  const checks = [
+    { label: "Impressum ausgefüllt", ok: !!(imp.firmenname && imp.inhaberName) },
+    { label: "Datenschutz aktualisiert", ok: !!ds.letzteAktualisierung },
+    { label: "SMTP konfiguriert", ok: !!(smtp.host || process.env.SMTP_HOST) && !!(smtp.encryptedPass || smtp.pass || process.env.SMTP_PASS) },
+    { label: "SMTP-Passwort verschlüsselt", ok: !!(smtp.encryptedPass || process.env.SMTP_PASS) },
+  ];
+
+  const allOk = checks.every((c) => c.ok);
+
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">
       <div className="max-w-xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">Admin</h1>
-          <p className="text-sm text-gray-500 mt-1">Gartenhilfe – Verwaltung</p>
+        <div className="mb-8 flex items-start justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Admin</h1>
+            <p className="text-sm text-gray-500 mt-1">Gartenhilfe – Verwaltung</p>
+          </div>
+          <LogoutButton />
+        </div>
+
+        {/* Compliance status */}
+        <div className={`mb-6 rounded-xl border px-5 py-4 ${allOk ? "bg-emerald-50 border-emerald-200" : "bg-amber-50 border-amber-200"}`}>
+          <p className={`text-xs font-semibold uppercase tracking-wider mb-3 ${allOk ? "text-emerald-700" : "text-amber-700"}`}>
+            Status
+          </p>
+          <ul className="space-y-1.5">
+            {checks.map((c) => (
+              <li key={c.label} className="flex items-center gap-2 text-sm">
+                {c.ok
+                  ? <svg className="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  : <svg className="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                }
+                <span className={c.ok ? "text-gray-700" : "text-amber-800 font-medium"}>{c.label}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="space-y-3">

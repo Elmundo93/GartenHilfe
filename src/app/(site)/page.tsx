@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 import { OrganizationJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Startseite",
+  title: { absolute: "Gartenhilfe – Ihr Gartenservice im Raum Braunschweig" },
   description: "Gartenhilfe – Ihr regionaler Gartenservice im Raum Braunschweig. Rasenmähen, Heckenschnitt, Unkrautentfernung, Pflanz- und Erdarbeiten sowie Gartenreinigung. Jetzt anfragen!",
   keywords: [
     "Gartenservice Braunschweig",

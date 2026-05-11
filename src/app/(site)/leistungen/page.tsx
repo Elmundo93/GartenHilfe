@@ -2,6 +2,7 @@ import { getAllServices } from "@/lib/content";
 import { Section } from "@/components/ui/Section";
 import { ServiceCard } from "@/components/service/ServiceCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { BreadcrumbListJsonLd } from "@/lib/schema";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -27,6 +28,10 @@ export default async function ServicesPage() {
 
   return (
     <>
+      <BreadcrumbListJsonLd items={[
+        { name: "Startseite", url: "/" },
+        { name: "Leistungen", url: "/leistungen" },
+      ]} />
       <Section>
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">

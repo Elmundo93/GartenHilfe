@@ -62,8 +62,21 @@ Content is read at runtime via `src/lib/content.ts`. The admin dashboard allows 
 ## Environment Variables
 
 Required in `.env`:
-- `RESEND_API_KEY` — Resend API key for sending email
-- `MAIL_FROM` — Sender address for outgoing emails
-- `MAIL_FALLBACK_TO` — Fallback recipient if location has no email
 - `KEYSTATIC_SECRET` — HMAC secret for admin session tokens
 - `KEYSTATIC_ADMIN_PASSWORD` — Password for `/admin-login`
+
+SMTP (configured via Admin → E-Mail-Einstellungen or env):
+- `SMTP_HOST` — Mail server hostname
+- `SMTP_PORT` — Port (587 STARTTLS or 465 TLS)
+- `SMTP_USER` — SMTP username / email address
+- `SMTP_PASS` — SMTP password (plaintext env fallback)
+- `SMTP_FROM` / `MAIL_FROM` — Sender address
+- `MAIL_FALLBACK_TO` — Fallback recipient for contact form
+- `SMTP_SECURE` — `true` for TLS port 465
+- `SMTP_SETTINGS_ENCRYPTION_KEY` — Base64(32-Byte) key for AES-256-GCM password encryption
+
+Optional:
+- `GartenHilfeBlob_READ_WRITE_TOKEN` — Vercel Blob token for production content storage
+- `DATA_DIR` — Local content directory override (dev/staging)
+- `NEXT_PUBLIC_BASE_URL` — Canonical base URL
+- `GOOGLE_VERIFICATION_ID` — Google Search Console verification

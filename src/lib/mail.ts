@@ -1,7 +1,6 @@
-import { Resend } from "resend";
-
-const FROM = process.env.MAIL_FROM ?? "Gartenhilfe <kontakt@gartenhilfe-bs.de>";
-const RECIPIENT = process.env.MAIL_FALLBACK_TO ?? "info@gartenhilfe-bs.de";
+import nodemailer from "nodemailer";
+import type SMTPTransport from "nodemailer/lib/smtp-transport";
+import { readSmtpSettings, resolveSmtpConfig } from "@/lib/settings";
 
 export interface MailPayload {
   name: string;
@@ -11,32 +10,68 @@ export interface MailPayload {
   nachricht?: string;
 }
 
+async function createTransporter() {
+  const stored = await readSmtpSettings();
+  const config = resolveSmtpConfig(stored);
+
+  if (!config.host || !config.user || !config.pass) {
+    throw new Error(
+      "[mail] SMTP nicht konfiguriert. Bitte unter Admin → E-Mail-Einstellungen einrichten."
+    );
+  }
+
+  if (!Number.isInteger(config.port) || config.port <= 0) {
+    throw new Error("[mail] SMTP_PORT muss eine gültige Portnummer sein.");
+  }
+
+  const options: SMTPTransport.Options = {
+    host: config.host,
+    port: config.port,
+    secure: config.secure,
+    auth: { user: config.user, pass: config.pass },
+    requireTLS: config.port === 587,
+  };
+
+  return { transporter: nodemailer.createTransport(options), config };
+}
+
 export async function sendContactMail(payload: MailPayload): Promise<void> {
-  const resend = new Resend(process.env.RESEND_API_KEY);
-  await resend.emails.send({
-    from:    FROM,
-    to:      RECIPIENT,
+  const { transporter, config } = await createTransporter();
+
+  await transporter.sendMail({
+    from: config.from,
+    to: config.fallbackTo,
     replyTo: payload.email || undefined,
     subject: `Neue Anfrage: ${payload.leistung ? payload.leistung + " – " : ""}${payload.name}`,
-    html:    internalTemplate(payload),
+    html: internalTemplate(payload),
   });
 
   if (payload.email) {
-    await resend.emails.send({
-      from:    FROM,
-      to:      payload.email,
+    await transporter.sendMail({
+      from: config.from,
+      to: payload.email,
       subject: "Ihre Anfrage bei Gartenhilfe",
-      html:    confirmationTemplate(payload),
+      html: confirmationTemplate(payload),
     });
   }
+}
+
+function escapeHtml(value: string | undefined): string {
+  if (!value) return "";
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
 function row(label: string, value: string | undefined) {
   if (!value) return "";
   return `
     <tr>
-      <td style="padding:6px 12px 6px 0;color:#6b7280;font-size:13px;white-space:nowrap;vertical-align:top;">${label}</td>
-      <td style="padding:6px 0;color:#111827;font-size:13px;">${value}</td>
+      <td style="padding:6px 12px 6px 0;color:#6b7280;font-size:13px;white-space:nowrap;vertical-align:top;">${escapeHtml(label)}</td>
+      <td style="padding:6px 0;color:#111827;font-size:13px;">${escapeHtml(value)}</td>
     </tr>`;
 }
 
@@ -60,7 +95,7 @@ function internalTemplate(payload: MailPayload) {
       ${payload.nachricht ? `
         <div style="margin-top:20px;padding:16px;background:#f0fdf4;border-radius:8px;">
           <p style="margin:0 0 6px;font-size:12px;font-weight:600;color:#059669;text-transform:uppercase;">Nachricht</p>
-          <p style="margin:0;font-size:13px;color:#374151;white-space:pre-wrap;">${payload.nachricht}</p>
+          <p style="margin:0;font-size:13px;color:#374151;white-space:pre-wrap;">${escapeHtml(payload.nachricht)}</p>
         </div>` : ""}
     </div>
     <div style="background:#f9fafb;border-top:1px solid #e5e7eb;padding:16px 32px;text-align:center;">
@@ -78,7 +113,7 @@ function confirmationTemplate(payload: MailPayload) {
 <body style="margin:0;padding:0;background:#f9fafb;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <div style="max-width:600px;margin:32px auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.1);">
     <div style="background:linear-gradient(135deg,#059669,#047857);padding:28px 32px;">
-      <h1 style="margin:0;color:#fff;font-size:22px;font-weight:700;">Vielen Dank, ${payload.name}!</h1>
+      <h1 style="margin:0;color:#fff;font-size:22px;font-weight:700;">Vielen Dank, ${escapeHtml(payload.name)}!</h1>
       <p style="margin:6px 0 0;color:#d1fae5;font-size:14px;">Ihre Anfrage ist bei uns eingegangen – wir melden uns so schnell wie möglich.</p>
     </div>
     <div style="padding:28px 32px;">
