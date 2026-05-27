@@ -76,7 +76,7 @@ SMTP (configured via Admin → E-Mail-Einstellungen or env):
 - `SMTP_SETTINGS_ENCRYPTION_KEY` — Base64(32-Byte) key for AES-256-GCM password encryption
 
 Optional:
-- `GartenHilfeBlob_READ_WRITE_TOKEN` — Vercel Blob token for production content storage
+- `Blob_READ_WRITE_TOKEN` — Vercel Blob token for production content storage
 - `DATA_DIR` — Local content directory override (dev/staging)
 - `NEXT_PUBLIC_BASE_URL` — Canonical base URL
 - `GOOGLE_VERIFICATION_ID` — Google Search Console verification
