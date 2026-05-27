@@ -1,11 +1,12 @@
 {
-  "name": "mielke",
+  "name": "gartenhilfe",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "dev:no-turbopack": "next dev",
-    "build": "next build --turbopack",
+    "build": "node scripts/seed-blob.mjs && next build --turbopack",
+    "cleanup-blob": "node scripts/cleanup-blob.mjs",
     "start": "next start",
     "lint": "eslint"
   },

@@ -3,10 +3,20 @@ import path from "node:path";
 
 const BLOB_TOKEN = process.env.Blob_READ_WRITE_TOKEN;
 const USE_BLOB = !!BLOB_TOKEN;
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
 
 const LOCAL_CONTENT_DIR = process.env.DATA_DIR
   ? path.resolve(process.env.DATA_DIR)
   : path.join(process.cwd(), "src", "content");
+
+export type ContentDirEntry = {
+  filename: string;
+  content: string;
+};
+
+function contentPath(relPath: string): string {
+  return `content/${relPath}`;
+}
 
 function mergeWithDefaults<T>(defaults: T, parsed: unknown): T {
   if (
@@ -22,6 +32,11 @@ function mergeWithDefaults<T>(defaults: T, parsed: unknown): T {
   return parsed as T;
 }
 
+// In Production soll ein Blob-Fehler sichtbar werden, statt still alte Build-Daten auszuliefern.
+function shouldFallbackToFilesystem(): boolean {
+  return !IS_PRODUCTION;
+}
+
 // ── Read ───────────────────────────────────────────────────────────────────────
 
 export async function readContentFile<T>(relPath: string, defaults: T): Promise<T> {
@@ -34,71 +49,94 @@ export async function readPrivateContentFile<T>(relPath: string, defaults: T): P
 }
 
 async function readFromBlob<T>(relPath: string, defaults: T): Promise<T> {
+  const { get, BlobNotFoundError } = await import("@vercel/blob");
+  const pathname = contentPath(relPath);
+
   try {
-    const { get } = await import("@vercel/blob");
-    const result = await get(`content/${relPath}`, {
-      access: "private",
-      token: BLOB_TOKEN,
-      useCache: false,
-    } as Parameters<typeof get>[1]);
-    if (!result || !result.stream) return readFromFilesystem(relPath, defaults);
+    const result = await get(pathname, { access: "private", token: BLOB_TOKEN, useCache: false });
+
+    if (!result || result.statusCode !== 200 || !result.stream) {
+      if (shouldFallbackToFilesystem()) return readFromFilesystem(relPath, defaults);
+      return defaults;
+    }
+
     const parsed = JSON.parse(await new Response(result.stream).text());
     return mergeWithDefaults(defaults, parsed);
-  } catch {
-    return readFromFilesystem(relPath, defaults);
+  } catch (err) {
+    if (err instanceof BlobNotFoundError) {
+      if (shouldFallbackToFilesystem()) return readFromFilesystem(relPath, defaults);
+      return defaults;
+    }
+    console.error(`[storage] Blob-Lesefehler für ${pathname}:`, err);
+    if (shouldFallbackToFilesystem()) return readFromFilesystem(relPath, defaults);
+    throw err;
   }
 }
 
 async function readFromFilesystem<T>(relPath: string, defaults: T): Promise<T> {
   try {
     const p = path.join(LOCAL_CONTENT_DIR, relPath);
-    const raw = await fs.readFile(p, "utf8");
-    return mergeWithDefaults(defaults, JSON.parse(raw));
-  } catch {
+    const parsed = JSON.parse(await fs.readFile(p, "utf8"));
+    return mergeWithDefaults(defaults, parsed);
+  } catch (err) {
+    console.warn(`[storage] Dateisystem-Fallback liefert Defaults für ${relPath}:`, err);
     return defaults;
   }
 }
 
 // ── Read directory ─────────────────────────────────────────────────────────────
 
-export async function readContentDir(relDir: string): Promise<string[]> {
+export async function readContentDirEntries(relDir: string): Promise<ContentDirEntry[]> {
   if (USE_BLOB) return readDirFromBlob(relDir);
   return readDirFromFilesystem(relDir);
 }
 
-async function readDirFromBlob(relDir: string): Promise<string[]> {
+async function readDirFromBlob(relDir: string): Promise<ContentDirEntry[]> {
+  const { list, get } = await import("@vercel/blob");
+  const prefix = contentPath(`${relDir}/`);
+
   try {
-    const { list, get } = await import("@vercel/blob");
-    const { blobs } = await list({ prefix: `content/${relDir}/`, token: BLOB_TOKEN });
+    const { blobs } = await list({ prefix, token: BLOB_TOKEN });
     const jsonBlobs = blobs.filter((b) => b.pathname.endsWith(".json"));
-    if (jsonBlobs.length === 0) return readDirFromFilesystem(relDir);
+
+    if (jsonBlobs.length === 0) {
+      if (shouldFallbackToFilesystem()) return readDirFromFilesystem(relDir);
+      return [];
+    }
 
     return Promise.all(
       jsonBlobs.map(async (b) => {
-        const result = await get(b.pathname, {
-          access: "private",
-          token: BLOB_TOKEN,
-          useCache: false,
-        } as Parameters<typeof get>[1]);
-        if (!result || !result.stream) throw new Error(`[storage] Blob nicht lesbar: ${b.pathname}`);
-        return new Response(result.stream).text();
+        const result = await get(b.pathname, { access: "private", token: BLOB_TOKEN, useCache: false });
+        if (!result || result.statusCode !== 200 || !result.stream) {
+          throw new Error(`[storage] Blob nicht lesbar: ${b.pathname}`);
+        }
+        return {
+          filename: path.basename(b.pathname),
+          content: await new Response(result.stream).text(),
+        };
       })
     );
-  } catch {
-    return readDirFromFilesystem(relDir);
+  } catch (err) {
+    console.error(`[storage] Blob-Verzeichnisfehler für ${prefix}:`, err);
+    if (shouldFallbackToFilesystem()) return readDirFromFilesystem(relDir);
+    throw err;
   }
 }
 
-async function readDirFromFilesystem(relDir: string): Promise<string[]> {
+async function readDirFromFilesystem(relDir: string): Promise<ContentDirEntry[]> {
   try {
     const dir = path.join(LOCAL_CONTENT_DIR, relDir);
     const files = await fs.readdir(dir);
     return Promise.all(
       files
         .filter((f) => f.endsWith(".json"))
-        .map((f) => fs.readFile(path.join(dir, f), "utf8"))
+        .map(async (f) => ({
+          filename: f,
+          content: await fs.readFile(path.join(dir, f), "utf8"),
+        }))
     );
-  } catch {
+  } catch (err) {
+    console.warn(`[storage] Dateisystem-Verzeichnis leer/default für ${relDir}:`, err);
     return [];
   }
 }
@@ -106,8 +144,11 @@ async function readDirFromFilesystem(relDir: string): Promise<string[]> {
 // ── Write ──────────────────────────────────────────────────────────────────────
 
 export async function writeContentFile(relPath: string, content: string): Promise<void> {
-  if (USE_BLOB) await writeToBlob(relPath, content);
-  else await writeToFilesystem(relPath, content);
+  if (USE_BLOB) {
+    await writeToBlob(relPath, content);
+  } else {
+    await writeToFilesystem(relPath, content);
+  }
 }
 
 export async function writePrivateContentFile(relPath: string, content: string): Promise<void> {
@@ -116,7 +157,7 @@ export async function writePrivateContentFile(relPath: string, content: string):
 
 async function writeToBlob(relPath: string, content: string): Promise<void> {
   const { put } = await import("@vercel/blob");
-  await put(`content/${relPath}`, content, {
+  await put(contentPath(relPath), content, {
     access: "private",
     addRandomSuffix: false,
     allowOverwrite: true,

@@ -1,4 +1,4 @@
-import { readContentFile, readContentDir, readPrivateContentFile } from "@/lib/storage";
+import { readContentFile, readContentDirEntries, readPrivateContentFile } from "@/lib/storage";
 
 export type ImpressumContent = {
   firmenname: string;
@@ -53,11 +53,11 @@ export type AboutUsContent = {
 };
 
 export async function getAllServices(): Promise<Service[]> {
-  const raws = await readContentDir("services");
-  return raws
-    .map((raw) => {
+  const entries = await readContentDirEntries("services");
+  return entries
+    .map(({ content }) => {
       try {
-        return JSON.parse(raw) as Service;
+        return JSON.parse(content) as Service;
       } catch {
         return null;
       }
@@ -140,10 +140,10 @@ export async function getDatenschutzContent(): Promise<DatenschutzContent> {
 }
 
 export async function getAboutUsContent(): Promise<AboutUsContent | null> {
-  const raws = await readContentDir("about-us");
-  if (raws.length === 0) return null;
+  const entries = await readContentDirEntries("about-us");
+  if (entries.length === 0) return null;
   try {
-    return JSON.parse(raws[0]) as AboutUsContent;
+    return JSON.parse(entries[0].content) as AboutUsContent;
   } catch {
     return null;
   }
