@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const BLOB_TOKEN = process.env.Blob_READ_WRITE_TOKEN;
+const BLOB_TOKEN = process.env.BLOB_READ_WRITE_TOKEN ?? process.env.Blob_READ_WRITE_TOKEN;
 const USE_BLOB = !!BLOB_TOKEN;
 const IS_PRODUCTION = process.env.NODE_ENV === "production";
 
